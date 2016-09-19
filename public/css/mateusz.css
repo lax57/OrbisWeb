@@ -1,0 +1,118 @@
+﻿body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans",sans-serif;
+}
+
+a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, td, textarea, th, ul {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+
+.font-red {
+    color: #e7505a !important;
+}
+
+.uppercase {
+    text-transform: uppercase!important;
+}
+
+.vertical-center {
+   position: absolute;
+   top: 50%;                 
+   transform: translate(0, -50%)
+}
+
+.form-control {
+    outline: 0 !important;
+    border-radius: 0px!important;
+}
+
+.btn, .form-control {
+    box-shadow: none !important;
+
+}
+
+.btn.btn-outline.red {
+    border-color: #e7505a;
+    color: #e7505a;
+    background: 0 0;
+}
+
+.btn.btn-outline.red:hover {
+    border-color: #e7505a;
+    color: #fff;
+    background-color: #e7505a;
+}
+
+.mt-checkbox, .mt-radio {
+    display: inline-block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.mt-checkbox>span, .mt-radio>span {
+    border: 1px solid transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 19px;
+    width: 19px;
+    background: #E6E6E6;
+}
+
+.mt-checkbox>input, .mt-radio>input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.mt-checkbox.mt-checkbox-outline:hover>input:not([disabled]):checked~span, .mt-checkbox.mt-checkbox-outline:hover>input:not([disabled])~span, .mt-checkbox.mt-checkbox-outline>input:checked~span, .mt-checkbox.mt-checkbox-outline>input:focus~span, .mt-checkbox.mt-checkbox-outline>span, .mt-checkbox.mt-radio-outline:hover>input:not([disabled]):checked~span, .mt-checkbox.mt-radio-outline:hover>input:not([disabled])~span, .mt-checkbox.mt-radio-outline>input:checked~span, .mt-checkbox.mt-radio-outline>input:focus~span, .mt-checkbox.mt-radio-outline>span, .mt-radio.mt-checkbox-outline:hover>input:not([disabled]):checked~span, .mt-radio.mt-checkbox-outline:hover>input:not([disabled])~span, .mt-radio.mt-checkbox-outline>input:checked~span, .mt-radio.mt-checkbox-outline>input:focus~span, .mt-radio.mt-checkbox-outline>span, .mt-radio.mt-radio-outline:hover>input:not([disabled]):checked~span, .mt-radio.mt-radio-outline:hover>input:not([disabled])~span, .mt-radio.mt-radio-outline>input:checked~span, .mt-radio.mt-radio-outline>input:focus~span, .mt-radio.mt-radio-outline>span {
+    border: 1px solid #d9d9d9;
+    background: 0 0;
+}
+
+.input-icon>i, .mt-checkbox-list .mt-checkbox, .mt-checkbox-list .mt-radio, .mt-checkbox>input:checked~span:after, .mt-radio-list .mt-checkbox, .mt-radio-list .mt-radio, .mt-radio>input:checked~span:after {
+    display: block;
+}
+.mt-checkbox>span:after {
+    left: 6px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid #666;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.mt-checkbox>span:after, .mt-radio>span:after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+label {
+    font-weight: 400;
+}
+
+a:active, a:focus, a:hover {
+    outline: 0;
+}
+
+a:hover {
+    cursor: pointer;
+    color: #23527c;
+}
+
+#side-menu .fa {
+    width:14px;
+    height:14px;
+}
+

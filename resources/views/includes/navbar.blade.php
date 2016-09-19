@@ -51,6 +51,7 @@
                 </a>
             </li>
 
+
             <li class="session_control nav-item">
                 <a href="{{ route('logout') }}" class="nav-link nav-toggle">
                     <i class="fa fa-sign-out"></i>

@@ -3,7 +3,7 @@
     <div class="page-header-inner ">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <i class="fa fa-globe fa-3x logo" id="orbis-logo">rbis</i>
+            <i class="fa fa-globe fa-3x logo vertical-center" id="orbis-logo">rbis</i>
             <div class="menu-toggler sidebar-toggler" id="toggler">
                 <span></span>
             </div>
