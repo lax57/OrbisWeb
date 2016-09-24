@@ -1,5 +1,8 @@
+@extends('layouts.dashboard')
+
+@section('page-content')
+
 <div class="page-content-wrapper">
-    <!-- BEGIN CONTENT BODY -->
     <div id="page-content" class="page-content" style="min-height:509px">
         <div id="noReadings" class="no_data">
             <div>
@@ -30,5 +33,5 @@
         </div>
 
     </div>
-    <!-- END CONTENT BODY -->
 </div>
+@endsection

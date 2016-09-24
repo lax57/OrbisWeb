@@ -44,6 +44,35 @@ a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, t
     background-color: #e7505a;
 }
 
+.btn-default.btn-transparent-red {
+    box-shadow: none;
+    background: 0 0;
+    background-image: none;
+    border-color: #d2312e;
+    border-radius:5px!important;
+    color: #d2312e;
+    text-shadow: none;
+    font-size: 14px;
+    font-weight: bold !important;
+    white-space: normal;
+    text-transform: uppercase;
+    min-width: 100%;
+    margin-top:10px;
+    transition: all 0.3s ease;
+}
+
+.btn-default.btn-transparent-red:hover {
+    background-color:#d2312e;
+    color:#fff;
+}
+
+.btn-inactive {
+    background-color: #8c8c8c!important;
+    pointer-events: none;
+    border-color: #fff!important;
+    color: #fff!important;
+}
+
 .mt-checkbox, .mt-radio {
     display: inline-block;
     position: relative;
@@ -116,3 +145,347 @@ a:hover {
     height:14px;
 }
 
+.course-filter {
+    text-align: center;
+    margin-top: 3px;
+    margin-bottom:3px;
+}
+
+.course-filter button {
+    border: 1px solid #8c8c8c;
+    font-size: 14px;
+    color: #8c8c8c;
+    padding: 6px 14px;
+    margin: 0 2px;
+    border-radius: 5px!important;
+    cursor: pointer;
+    text-align: center;
+    background: 0 0;
+    outline: 0;
+}
+
+.course-filter button.active, .course-filter button:hover {
+    background: #d2312e;
+    border: 1px solid #d2312e;
+    color: #fff;
+    text-decoration: none;
+    outline: 0;
+}
+
+.medium-course-box-wrapper {
+    margin: 10px;
+    width:240px;
+    height:300px;
+}
+
+.large-course-box-wrapper {
+    width:100%;
+}
+
+.course-box {
+    background-color:#fff;
+    border-radius:4px!important;
+    box-shadow: 0 1px 2px rgba(0,0,0,.07); 
+    border: none;
+    padding:5px;
+    height:100%;
+}
+
+.course-box:hover {
+    box-shadow: 0 3px 4px #8c8c8c; 
+}
+
+.image-container {
+    height:83%;
+    position:relative;
+}
+
+.course-name {
+
+    width:100%;
+    background-color: rgba(0,0,100,0.5);
+    font-weight: bold;
+    text-align:center;
+    padding-top:8px;
+    padding-bottom:8px;
+    color: #fff;
+    position:absolute;
+    bottom:0;
+}
+
+.course-name div {
+    margin-top:30px;
+    font-weight: 300;
+    display:none;
+}
+
+
+
+.course-box img {
+    width:100%;
+    max-height:100%;
+}
+
+.center-horizontaly {
+  display: table;
+  margin: 0 auto;
+}
+
+.heading {
+    color: rgba(0,0,0,0.45);
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    height: 48px;
+    padding: 15px 16px;
+}
+
+.description-box {
+    background-color: #f6f6f6;
+    border-radius:4px!important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3); 
+}
+
+#course-page .course-box {
+    max-width:550px; 
+}
+
+#course-page .course-box {
+    max-width:550px; 
+}
+
+.description-box .heading {
+    color: rgba(0,0,0,0.45);
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    height: 48px;
+    padding: 15px 16px;
+}
+
+.description-box .content {
+    padding:20px;
+}
+
+@media only screen and (min-width : 481px) {
+    .flex-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #course-page .course-box {
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+    }
+
+    .flex-row > [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+    }
+    .flex-row.row:after, 
+    .flex-row.row:before {
+        display: flex;
+    }
+}
+
+.course-actions{
+    width: 100%;
+    margin: 0px;
+    margin-top: 10px;
+}
+
+.course-actions li {
+    background-color:#fff;
+    border: none;
+    width:24%;
+    margin-left: 0px;
+    padding:0px;
+    position:relative;
+    display:inline-block;
+    text-align:center;
+    font-weight:100;
+    color:#fff;
+}
+
+
+.overlay-red {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(210,49,46,.5);
+    transition: top .5s ease;
+}
+
+.overlay-item:hover .overlay-red {
+    top: 0;
+}
+
+.overlay-item .icon {
+    margin-top:-30%;
+}
+
+.overlay-item .hover-title-center {
+    word-wrap:break-word;
+}
+
+.flip-container {
+	perspective: 1000px;
+}
+	.flip-container:hover .flipper, .flip-container.hover .flipper {
+		transform: rotateY(180deg);
+	}
+
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+.front {
+	backface-visibility: hidden;
+	top: 0;
+	left: 0;
+    z-index: 2;
+	transform: rotateY(0deg);
+}
+
+.back {
+    width:100%;
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: rotateY(180deg);
+}
+
+.lesson-title-page {
+    width:100%;
+	height:140px;
+}
+
+.lesson-title-page h1 {
+    text-align:center;
+    padding-top:20px;
+    font-size: 6em;
+    height:150px;
+}
+
+.description-container {
+    background-color: rgba(0,0,0,0.0);
+    padding-left:60px;
+    padding-right:60px;
+    padding-bottom:10px;
+    height: 350px;
+}
+
+.description-container .actions {
+    width:85%;
+    font-weight: bold;
+    text-align:right;
+    padding-bottom:30px;
+    color: #8f8f8f;
+    position:absolute;
+    bottom:0;
+    
+}
+
+.description-container .actions li {
+    text-align:center;
+    transition: all 0.3s ease;
+}
+
+.description-container .actions li:hover {
+    color: indianred;
+    cursor: pointer;
+}
+
+.stat-container {
+    background-color:#d2312e;
+    width:100%;
+    height:400px;
+    border-radius:7px!important;
+    text-align:center;
+    color:#fff;
+    padding-top:30px;
+}
+
+.stat-container h3 {
+    margin-top:5px;
+    margin-bottom:10px;
+}
+
+.stat-container h1 {
+    font-size: 6em;
+     margin-top:20px;
+    margin-bottom:20px;
+}
+
+.stat-container h3 {
+    font-size: 2em;
+}
+
+.vocabulary-container{
+    height:400px;
+    width:100%;
+    background-color:#fff;
+}
+
+.vocabulary-container .content{
+    text-align:center;
+}
+
+.vocabulary-container .content h1{
+    margin-top: 40px;
+    font-size: 60px;
+}
+
+
+.excercise-nav {
+    margin-top: 15px;
+    border-color:#f4f4f4!important
+}
+
+.excercise-nav .btn {
+    border-color:#f4f4f4!important;
+    border-radius:6px!important;
+}
+
+
+.excercise-nav a:hover {
+    opacity: 0.7;
+    box-shadow: 2px 2px 2px black!important;
+}
+
+.excercise-nav #check {
+    background-color:darkorange;
+}
+
+.excercise-nav #dontknow {
+    background-color:darkblue;
+}
+
+.excercise-nav #know {
+    background-color:darkgreen;
+}
+
+.vocabulary-container input, .vocabulary-container #translation-input{
+    margin: auto;
+    margin-top:50px;
+    width: 60%;
+    height:50px;
+    font-size: 30px;
+}
+
+
+.success {
+    border-color:darkgreen;
+    border-width:3px;
+    border-radius: 8px!important;
+}
+
+.fail {
+    border-color:darkred;
+    border-width:3px;
+    border-radius: 8px!important;
+}

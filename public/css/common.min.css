@@ -4547,7 +4547,7 @@ table.table-bordered.dataTable {
     }
 
     .page-sidebar-closed .page-content-wrapper .page-content {
-        margin-left: 45px !important;
+        margin-left: 0px !important;
     }
 
     .page-full-width .page-content-wrapper .page-content, .page-sidebar-closed.page-sidebar-hide .page-content-wrapper .page-content {

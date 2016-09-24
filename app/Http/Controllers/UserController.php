@@ -7,15 +7,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function getDashboard()
-    {
-        $courses = Auth::User()->courses;
-        return view('dashboard', ['courses' => $courses]);
-    }
-
     public function postSignUp(Request $request)
     {
-        $this->validate();
+        $this->validate($request, [
+            'email'=>'required|email|unique:users',
+            'password'=>'required|min:4'
+        ]);
         $email = $request['email'];
         $password = bcrypt($request['password']);
 
@@ -25,7 +22,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('user_courses');
     }
 
     public function postSignIn(Request $request)
@@ -36,7 +33,7 @@ class UserController extends Controller
         ]);
 
         if(Auth::attempt(['email'=> $request['email'], 'password' => $request['password']])) {
-            return redirect()->route('dashboard');
+            return redirect()->route('user_courses');
         }
         return redirect()->back();
     }

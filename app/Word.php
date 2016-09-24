@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class Word extends Model
 {
-    public function users()
+    public function translations()
     {
-        return $this->belongsToMany('App\User');
+        return $this->hasMany('App\Translation','word_from_id');
     }
 
     public function language()

@@ -15,11 +15,48 @@
         return view('welcome');
     })->name('home');
 
-    Route::get('/dashboard', [
-        'uses'=> 'UserController@getDashboard',
-        'as' => 'dashboard',
+    Route::get('/user_courses', [
+        'uses'=> 'CourseController@getUserCourses',
+        'as' => 'user_courses',
         'middleware' => 'auth2'
     ]);
+
+    Route::get('/course_page/{course_id}', [
+        'uses'=> 'CourseController@getCoursePage',
+        'as' => 'course_page',
+        'middleware' => 'auth2'
+    ]);
+
+    Route::get('/course_page/{course_id}/lessons_overview', [
+        'uses'=> 'CourseController@getLessons',
+        'as' => 'lessons_overview',
+        'middleware' => 'auth2'
+    ]);
+
+    Route::get('/course_page/{course_id}/lesson/{lesson_id}/vocabulary_intro', [
+        'uses'=> 'LessonController@getLessonVocabulary',
+        'as' => 'vocabulary_intro',
+        'middleware' => 'auth2'
+    ]);
+
+    Route::get('/course_page/{course_id}/lesson/{lesson_id}/vocabulary_listen', [
+        'uses'=> 'CourseController@getVocabularyListen',
+        'as' => 'vocabulary_listen',
+        'middleware' => 'auth2'
+    ]);
+
+    Route::get('/course_page/{course_id}/lesson/{lesson_id}/vocabulary_translation', [
+        'uses'=> 'CourseController@getVocabularyTranslation',
+        'as' => 'vocabulary_translation',
+        'middleware' => 'auth2'
+    ]);
+
+    Route::get('/all_courses', [
+        'uses'=> 'CourseController@getAllCourses',
+        'as' => 'all_courses',
+        'middleware' => 'auth2'
+    ]);
+
 
     Route::post('/signin', [
         'uses'=> 'UserController@postSignIn',
@@ -32,7 +69,19 @@
     ]);
 
     Route::get('/logout', [
-    'uses'=> 'UserController@getLogout',
-    'as' => 'logout'
-]);
+        'uses'=> 'UserController@getLogout',
+        'as' => 'logout'
+    ]);
+
+    Route::post('/course_signup', [
+        'uses' =>'CourseController@postCourseSignUp',
+        'as' =>'course_signup',
+        'auth' => 'auth2',
+    ]);
+
+    Route::post('/course_signout', [
+        'uses' =>'CourseController@postCourseSignOut',
+        'as' =>'course_signout',
+        'auth' => 'auth2',
+    ]);
 //});

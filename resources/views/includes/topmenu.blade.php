@@ -20,11 +20,11 @@
                 <li class="pull-right">
                     <ul class="list-inline">
                         <li>
-                            <input type="text" class="form-control" placeholder="Wyszukaj kursy">
+                            <input type="text" class="form-control" placeholder="{{trans('topmenu.search_courses') }}">
                         </li>
                         <li>
                             <button id="applySearch" class="btn btn-accept" type="submit">
-                                Szukaj
+                                {{trans('topmenu.search')}}
                             </button>
                         </li>
                     </ul>
