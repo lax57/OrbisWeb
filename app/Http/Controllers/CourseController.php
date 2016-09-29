@@ -2,6 +2,10 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\Lesson;
+use App\Repetition;
+use App\Word;
+use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +27,30 @@ class CourseController extends Controller
             if(!in_array($level, $user_unique_levels)) { array_push($user_unique_levels, $level); }
         }
         return $user_unique_levels;
+    }
+
+    private function calculateCourseProgress($course){
+        $wordscount = 0;
+        $taskcount = 0;
+        foreach(Lesson::where('course_id', $course->id)->get() as $lesson){
+            $wordscount += $lesson->words->count();
+            $taskcount += $lesson->tasks->count();
+        }
+
+        $repetition_count = $course->repetitions->count();
+        return $wordscount!==0? number_format(($repetition_count/($wordscount+$taskcount))*100 ,2 ): 0;
+    }
+
+    private function getTaskReptitionCount($course){
+        $date = date('Y-m-d');
+        $repetition_count = $course->repetitions->where('excercise_type', 'App\Task')->where('next_repetition', $date)->count();
+        return $repetition_count;
+    }
+
+    private function getWordReptitionCount($course){
+        $date = date('Y-m-d');
+        $repetition_count = $course->repetitions->where('excercise_type', 'App\Word')->where('next_repetition', $date)->count();
+        return $repetition_count;
     }
 
     public function getUserCourses()
@@ -55,10 +83,13 @@ class CourseController extends Controller
 
     public function getCoursePage($course_id)
     {
-        $user_courses = Auth::User()->courses;
         $course = Auth::User()->courses()->where('course_id', $course_id)->first();
+
         if($course){
-            return view('course_page', ['course'=>$course]);
+            $course_progress = $this -> calculateCourseProgress($course);
+            $task_rep_count = $this ->getTaskReptitionCount($course);
+            $word_rep_count = $this ->getWordReptitionCount($course);
+            return view('course_page', ['course'=>$course, 'progress' =>$course_progress, 'task_rep_count' => $task_rep_count,'word_rep_count' => $word_rep_count]);
         } else {
             return redirect()->back();
         }
@@ -78,24 +109,26 @@ class CourseController extends Controller
         return response()->json(['url'=>route('user_courses')],200);
     }
 
-    public function getLessons()
+    public function getLessons($course_id)
     {
-        return view("lessons_overview");
-    }
+        //TODO: check if user has permissions to course
+        $user_id = Auth::User()->id;
+        $lessons = Course::find($course_id)->lessons;
 
-    public function getVocabularyIntro()
-    {
-        return view("vocabulary.introduction");
-    }
+        $lessons_remeining_excercises = $lessons->map(
+            function($lesson) use($user_id) {
+                return [
+                    'word_remaining'=>$lesson->words->filter(function($w) use($user_id, $lesson){
+                                           if(!$w->hasRepetition($user_id, $lesson->course_id )){ return $w; }
+                                       })->count(),
+                    'task_remaining'=>$lesson->tasks->filter(function($t) use($user_id, $lesson){
+                        if(!$t->hasRepetition($user_id, $lesson->course_id )){ return $t; }
+                    })->count(),
+                    ];
+            }
 
-    public function getVocabularyListen()
-    {
-        return view("vocabulary.listen");
-    }
-
-    public function getVocabularyTranslation()
-    {
-        return view("vocabulary.translation");
+            );
+        return view("lessons_overview",['lessons'=>$lessons, 'lessons_remeining_excercises' =>$lessons_remeining_excercises]);
     }
 
 }

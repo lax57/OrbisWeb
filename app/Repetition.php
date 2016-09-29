@@ -1,23 +1,24 @@
 <?php
 
 namespace App;
+use App\Word;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Lesson extends Model
+class Repetition extends Model
 {
     public function course()
     {
         return $this->belongsTo('App\Course');
     }
 
-    public function words()
+    public function word()
     {
-        return $this->belongsToMany('App\Word');
+        return $this->hasOne('App\Word');
     }
 
-    public function tasks()
+    public function excercise()
     {
-        return $this->hasMany('App\Task');
+        return $this->morphTo();
     }
 }

@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     @foreach($user_courses as $course)
-                    <li class="nav-item {{ Request::is('course_page/'.$course->id) ? 'active' : '' }} ">
+                    <li class="nav-item {{ Request::is('course_page/'.$course->id.'*') ? 'active' : '' }} ">
                         <a href="{{route('course_page', ['course_id' => $course->id])}}" class="nav-link submit-filter-link">
                             <span class="title">{{$course->name}}</span>
                         </a>

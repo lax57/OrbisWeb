@@ -390,6 +390,7 @@ a:hover {
 }
 
 .description-container a {
+    font-weight: bold;
     padding-bottom:30px;
     color: #8f8f8f!important;
     transition: all 0.2s ease;
@@ -400,7 +401,7 @@ a:hover {
     transition: all 0.2s ease;
 }
 
-.description-container .actions li:hover {
+.description-container a:hover {
     color: indianred!important;
     text-decoration:none!important;
     cursor: pointer!important;
@@ -494,15 +495,4 @@ a:hover {
     border-color:darkred;
     border-width:3px;
     border-radius: 8px!important;
-}
-
-.modal { 
-         margin-top: 130px;
-}
-.modal-body { 
-    text-align: center;
-
-}
-.modal-dialog {
-    width:35%;
 }

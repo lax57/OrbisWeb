@@ -1158,7 +1158,7 @@
 }
 
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
-    width: 50px;
+    width: 220px;
 }
 
 .bootstrap-select.btn-group[class*=col-] .dropdown-toggle, .bootstrap-select.form-control:not([class*=col-]), .form-inline .bootstrap-select.btn-group .form-control {

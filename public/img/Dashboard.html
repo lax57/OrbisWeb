@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)http://localhost/OrbisWeb/public/course_page/1/lesson/1/vocabulary_listen# -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>    Dashboard
+</title>
+    <link href="http://localhost/OrbisWeb/public/fonts/font">
+    <link href="./Dashboard_files/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="./Dashboard_files/common.min.css" type="text/css">
+
+    <link rel="stylesheet" href="./Dashboard_files/custom.css" type="text/css">
+
+    <link rel="stylesheet" href="./Dashboard_files/login.min.css" type="text/css">
+
+    <link href="./Dashboard_files/mateusz.css" rel="stylesheet" type="text/css">
+
+
+    <script src="./Dashboard_files/jquery-3.1.0.min.js.pobrane"></script>
+
+    
+</head>
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white home">
+    <div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <i class="fa fa-globe fa-3x logo vertical-center" id="orbis-logo">rbis</i>
+            <div class="menu-toggler sidebar-toggler" id="toggler">
+                <span></span>
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+            <span></span>
+        </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <div class="top-menu">
+            <ul class="nav navbar-nav">
+                <li class="pull-right">
+                    <ul class="list-inline">
+                        <li>
+                            <input type="text" class="form-control" placeholder="Wyszukaj kursy">
+                        </li>
+                        <li>
+                            <button id="applySearch" class="btn btn-accept" type="submit">
+                                Szukaj
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>
+    <div class="clearfix"></div>
+
+    <div class="page-container">
+        <div class="page-sidebar-wrapper">
+    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+    <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+    <div class="page-sidebar navbar-collapse collapse">
+        <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+        <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+        <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+        <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+        <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+        <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+        <ul id="side-menu" class="page-sidebar-menu  page-header-fixed" data-keep-expanded="false" data-auto-scroll="false" data-slide-speed="200">
+            <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                        <li class="sidebar-toggler-wrapper hide">
+                <div class="sidebar-toggler">
+                    <span></span>
+                </div>
+            </li>
+            <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+            <li class="nav-item logo-dashboard">
+                <a href="http://localhost/OrbisWeb/public/user_courses">Dashboard</a>
+            </li>
+            <li id="your-courses" class="nav-item nav-button-dropdown active open">
+                <a class="nav-link nav-toggle">
+                    <i class="fa fa-users"></i>
+                    <span class="title">Twoje kursy</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item ">
+                        <a href="http://localhost/OrbisWeb/public/user_courses" class="nav-link submit-filter-link">
+                            <span class="title">Wszystkie</span>
+                        </a>
+                    </li>
+                                        <li class="nav-item  ">
+                        <a href="http://localhost/OrbisWeb/public/course_page/1" class="nav-link submit-filter-link">
+                            <span class="title">Hiszpański</span>
+                        </a>
+                    </li>
+                                        <li class="nav-item  ">
+                        <a href="http://localhost/OrbisWeb/public/course_page/2" class="nav-link submit-filter-link">
+                            <span class="title">Angielski dla początkujących</span>
+                        </a>
+                    </li>
+                                    </ul>
+            </li>
+
+            <li id="all-courses" class="nav-item nav-button-dropdown ">
+                <a class="nav-link submit-filter-link">
+                    <i class="fa fa-clock-o"></i>
+                    <span class="title">Przeglądaj</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item ">
+                        <a href="http://localhost/OrbisWeb/public/all_courses" class="nav-link submit-filter-link">
+                            <span class="title">Wszystkie</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class="session_control nav-item">
+                <a href="http://localhost/OrbisWeb/public/logout" class="nav-link nav-toggle">
+                    <i class="fa fa-sign-out"></i>
+                    <span class="title">Wyloguj</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>        <div class="page-content-wrapper">
+    <div id="vocabulary-page" class="page-content" style="min-height:509px">
+        <div class="page-title uppercase">
+            <div class="progress" style="height:30px;">
+    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" id="progress-bar" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+        <h3>0%</h3>
+    </div>
+</div>        </div>
+        <div class="flex-row row ">
+            <div class="col-md-3">
+                <div class="stat-container">
+    <h3>Pozostało</h3>
+    <h1 id="remainingAnswers">9</h1>
+    <h3>Dobrze: <span id="goodAnswers">0</span>
+    </h3><h3>Źle: <span id="badAnswers">0</span></h3>
+    
+    <h3><i class="fa fa-clock-o fa-2x aria-hidden=" true""=""></i></h3>
+    <h5>Nastpępna powtórka: 10/09/2016 </h5>
+</div>            </div>
+            <div class="col-md-9">
+                <div class="vocabulary-container description-box">
+                    <div class="heading uppercase">
+                        Słownictwo - Wysłuchaj i zapisz
+                    </div>
+                    <div class="content">
+                        <h1><i class="fa fa-volume-up" id="hearicon" aria-hidden="true" data-wordid=""></i> <span>la bicicleta</span></h1>
+                        <input type="text" class="form-control" placeholder="Wpisz słowo" id="userInputField">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="btn-group btn-group-justified excercise-nav">
+    <a href="http://localhost/OrbisWeb/public/course_page/1/lesson/1/vocabulary_listen#" id="finish-excercise" class="btn btn-primary">
+        <span>Zakończ</span>
+        <i class="fa fa-times-circle-o " aria-hidden="true"></i>
+    </a>
+    <a id="dontknow" class="btn btn-primary btn-inactive">Nie umiem</a>
+    <a id="check" class="btn btn-primary">Sprawdź</a>
+    <a id="know" class="btn btn-primary btn-inactive">Umiem</a>
+    <a id="next" class="btn btn-primary btn-inactive">
+        <span>Dalej</span>
+        <i class="fa fa-angle-double-right fa-2" aria-hidden="true"></i>
+    </a>
+</div>
+    </div>
+    <script type="text/javascript">
+        var words = [{"id":2,"created_at":null,"updated_at":null,"word":"la bicicleta","language_id":2},{"id":13,"created_at":null,"updated_at":null,"word":"las gafas","language_id":2},{"id":14,"created_at":null,"updated_at":null,"word":"hacer","language_id":2},{"id":15,"created_at":null,"updated_at":null,"word":"la mosca","language_id":2},{"id":16,"created_at":null,"updated_at":null,"word":"la mesa","language_id":2},{"id":17,"created_at":null,"updated_at":null,"word":"la familia","language_id":2},{"id":18,"created_at":null,"updated_at":null,"word":"el d\u00eda","language_id":2},{"id":19,"created_at":null,"updated_at":null,"word":"la noche","language_id":2},{"id":20,"created_at":null,"updated_at":null,"word":"polaco","language_id":2}];
+        var nextUrl = 'http://localhost/OrbisWeb/public/course_page/1/lesson/1/vocabulary_translation';
+        var endUrl = 'http://localhost/OrbisWeb/public/course_page/1/lessons_overview';
+        var firstWord = words[Math.floor(Math.random() * words.length)];
+        var remainingRep = '9';
+        $("#remainingAnswers").text(remainingRep);
+        $(".content h1 span").text(firstWord['word']);
+        $("#hearicon").data('wordid', firstWord['id']);
+        $(document).ready(function(){
+            $("#finish-excercise").href = endUrl;
+            activateButtons(false, true, false, false);
+        });
+
+
+        function validateView(){
+            var wordId = $("#hearicon").data("wordid");
+            var userInput = $('.content .form-control')[0].value;
+            var expectedWord = words.filter(function( word ) {
+                return word.id == wordId;
+            })[0];
+            if(userInput === expectedWord['word']){
+                $('.content .form-control').addClass('success');
+                words = words.filter(function (el) {
+                    return el.id !== wordId;
+                });
+                activateButtons(false, false, false, true);
+                return 1;
+            }else{
+                $('.content .form-control').addClass('fail');
+                activateButtons(false, false, false, true);
+                return -1;
+            }
+        };
+
+        function loadNextViewSlide() {
+            console.log("IT IS LISTEN");
+            if (words.length > 0) {
+            var slideValues = ['up', 'down', 'right', 'left'];
+            var nextWord = words[Math.floor(Math.random() * words.length)];
+
+            $('.content .form-control').removeClass('success');
+            $('.content .form-control').removeClass('fail');
+            $(".content h1 span").text(nextWord['word']);
+            //$("#hearicon").toggle("slide", { direction: slideValues[Math.floor(Math.random() * slideValues.length)] }, 300, function () {
+                $("#hearicon").data('wordid', nextWord['id']);
+            //});
+            //$("#hearicon").toggle("slide", { direction: slideValues[Math.floor(Math.random() * slideValues.length)] }, 400, function () {
+                activateButtons(false, true, false, false);
+            //});
+            } else {
+                var nextButtonLink = $("#next");
+                nextButtonLink[0].href = nextUrl;
+                activateButtons(false, false, false, true);
+            }
+        }
+
+        function endExcercise(){
+                var endExcerciseButtonLink = $("#finish-excercise");
+                endExcerciseButtonLink[0].href = endUrl;
+                $('#finish-excercise').trigger('click');
+        }
+
+        $('body').bind('keypress', function(e) {
+            var code = e.keyCode || e.which;
+             if(code == 13 && !$("#check").hasClass("btn-inactive")) { //Enter keycode
+
+                        $("#translation-input").blur();
+                        $('#check').trigger('click');
+             }else{
+                if(code == 13 && $("#check").hasClass("btn-inactive") && !$("#next").hasClass("btn-inactive"))
+                                $('#next').trigger('click');
+                }
+
+        });
+
+
+    </script>
+</div>
+    </div>
+
+    <script src="./Dashboard_files/isotope.pkgd.min.js.pobrane"></script>
+    <script src="./Dashboard_files/app.js.pobrane"></script>
+    <script src="./Dashboard_files/bootstrap.min.js.pobrane"></script>
+    <script src="./Dashboard_files/jquery-ui.js.pobrane"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+    <!--<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>-->
+
+    
+    <script>
+        var token = 'niyXGHcZZ9qu7kuW4TJbNFF21hdBYlDxGKHMOcam';
+        var courseSignUpUrl = 'http://localhost/OrbisWeb/public/course_signup';
+        var courseSignOutUrl = 'http://localhost/OrbisWeb/public/course_signout';
+        var fetchWordTranslation = 'http://localhost/OrbisWeb/public/fetchWordTranslation';
+    </script>
+
+
+</body></html>

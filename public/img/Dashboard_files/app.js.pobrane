@@ -40,53 +40,6 @@ $("#side-menu").find(".nav-button-dropdown").on('click', function () {
     }
 });
 
-$(".course-actions").find('li').eq(1).find('a').on('click', function () {
-    $("#grammar-modal").modal();
-})
-
-$(".course-actions").find('li').eq(2).find('a').on('click', function () {
-    $("#word-modal").modal();
-})
-
-$(".actions li:nth-child(2)").click(function (event) {
-    lessonId = event.target.closest('.actions').parentNode.parentNode.parentNode.dataset['lessonno'];
-    wordsno = event.target.closest('li').dataset['wordsno'];
-    if (wordsno > 0) {
-        $("#noWordReps").hide();
-        $("#selectWordRepCount").show();
-        $("#new-word-modal #lessonId").val(lessonId);
-        $("#numberOfWordReps").text(wordsno);
-        $("#goto-word-reps").show();
-
-    } else {
-        console.log(wordsno);
-        $("#selectWordRepCount").hide();
-        $("#goto-word-reps").hide();
-        $("#noWordReps").show();
-    }
-    $("#new-word-modal").modal();
-})
-
-$(".actions li:nth-child(3)").click(function (event) {
-    lessonId = event.target.closest('.actions').parentNode.parentNode.parentNode.dataset['lessonno'];
-    console.log(lessonId);
-    tasksno = event.target.closest('li').dataset['taskno'];
-    if (tasksno > 0) {
-        $("#noTaskReps").hide();
-        $("#selectTaskRepCount").show();
-        $("#new-grammar-modal #lessonId").val(lessonId);
-        $("#numberOfTaskReps").text(tasksno);
-        $("#goto-task-reps").show();
-
-    } else {
-        $("#selectTaskRepCount").hide();
-        $("#goto-task-reps").hide();
-        $("#noTaskReps").show();
-    }
-    $("#new-grammar-modal").modal();
-})
-
-
 
 $(".course-sign-up").on('click', function (event) {
     button = $(this);
@@ -99,11 +52,11 @@ $(".course-sign-up").on('click', function (event) {
     })
     .done(function (msg) {
         button.parent().find('.course-name').animate({
-        top: 0,
-    }, 300, function () {
+            top: 0,
+        }, 300, function () {
             button.parent().find('.course-success').show();
             button.parent().find('#successful-course-signup').show();
-    });
+        });
     });
 })
 
@@ -119,75 +72,38 @@ $("#leave-course").on('click', function (event) {
     .done(function (response) {
         window.location.href = response['url'];
     });
-    })
+})
 
 
 $("#check").on('click', function (event) {
 
     var check = validateView();
 
-    if(check['repNo'] > 0) {
+    if(check === 1) {
         updateStats(-1, 1, 0);
-        if (check['repId'] === -1) { setNewRepetition(check['repNo'], check['excerciseId'], check['type'], check['courseId']) }
-    else {
-            if (check['repId'] > 0) {
-                updateRepetition(check['repId'], check['repNo']);
-    } else {
-                console.log("Nie rób nic");
-    }
-    }
     } else{
-        if(check['repNo'] === -1) {
+        if(check === -1) {
             updateStats(0, 0, 1);
-            console.log("Nie wyznaczaj powtorki");
-    }
+        }
     } 
 
-    });
+});
 
 $("#next").on('click', function (event) {
     loadNextViewSlide();
-    updateStatsDate('');
-    })
+})
 
 $("#know").on('click', function (event) {
-        //TODO Ajax for repetition!!
+    //TODO Ajax for repetition!!
     updateStats(-1, 1, 0);
     acceptView();
 
-    })
+})
 
 $("#dontknow").on('click', function (event) {
     updateStats(0, 0, 1);
     cancelView();
-    })
-
-function setNewRepetition(userInputTrys, excerciseId, type, courseId) {
-    console.log('Ustawiam nowa powtorke');
-    $.ajax({
-        method: 'POST',
-        url: setRepetitionUrl,
-        data: { userInputTrys: userInputTrys, excerciseId:excerciseId, type:type, courseId:courseId, _token: token }
-    })
-    .done(function (response) {
-        console.log("Powtorka ustawiona!!!");
-        updateStatsDate(response['next_repetition']);
-        return 0;
-    });
-    }
-
-function updateRepetition(repId, userTrys) {
-    $.ajax({
-        method: 'POST',
-        url: updateRepetitionUrl,
-        data: { repId: repId, userInputTrys: userTrys, _token: token }
-    })
-    .done(function (response) {
-        console.log("Powtorka updateowana na:!!!");
-        updateStatsDate(response['next_repetition']);
-        return 0;
-    });
-    }
+})
 
 function updateStats(left, good, bad) {
     var remaining = parseInt($("#remainingAnswers").text());
@@ -205,56 +121,144 @@ function updateStats(left, good, bad) {
     var progress = ((goodAnswers/(goodAnswers + badAnswers))*100).toFixed(2);
     $("#progress-bar").width(progress+'%');
     $("#progress-bar").find('h3').text(progress + '%');
-    }
-
-function updateStatsDate(date) {
-    $("#nextRepDate").text(date);
-    }
+}
 
 
-function activateButtons(dontknow, check, know, next) {
+function activateButtons(dontknow,check,know,next) {
     if (dontknow){ $("#dontknow").removeClass('btn-inactive')} else $("#dontknow").addClass('btn-inactive');
     if (check) { $("#check").removeClass('btn-inactive') } else $("#check").addClass('btn-inactive');
     if (know) { $("#know").removeClass('btn-inactive') } else $("#know").addClass('btn-inactive');
     if (next) { $("#next").removeClass('btn-inactive') } else $("#next").addClass('btn-inactive');
-    }
+}
 
+
+/*
+$("#check").on('click', function (event) {
+    var content = $(this).parent();
+    var wordId = $("#word").data("wordid");
+    console.log("ID obiektu: ");
+    console.log(wordId);
+    var inputFields = content.find('.form-control');
+    if (inputFields.length) {
+        console.log("Jest input field!!!");
+    } else {
+
+        $.ajax({
+            method: 'POST',
+            url: fetchWordTranslation,
+            data: { wordId: wordId, _token: token }
+        })
+        .done(function (response) {
+            console.log(response);
+            $("#translation").text(response['translatedWords'][0]['word']);
+            $("#translation").fadeIn(500);
+            $("#know").removeClass('btn-inactive');
+            $("#dontknow").removeClass('btn-inactive');
+            $("#check").addClass('btn-inactive');
+        });
+
+    }
+})
+
+$("#know").on('click', function (event) {
+    //TODO Ajax for repetition!!
+    var word = $("#word").text();
+    var wordId = $("#word").data("wordid");
+    console.log(words);
+    delete words[wordId];
+    var keys = Object.keys(words);
+    var nextWordId = keys[Math.floor(Math.random() * keys.length)];
+    var nextWord = words[nextWordId]['word'];
+    $("#translation").hide();
+    $("#word").toggle("slide", { direction: "up" }, 300, function () {
+        $("#word").text(nextWord);
+        $("#word").data('wordid', words[nextWordId]['id']);
+    });
+    $("#word").toggle("slide", { direction: "left" }, 400, function () {
+        //$("#know").addClass('btn-inactive');
+        $("#dontknow").addClass('btn-inactive');
+        $("#check").removeClass('btn-inactive');
+    });
+    
+
+})
+
+*/
+
+/*var $grid = $('.course-container').isotope({
+    itemSelector: '.item',
+    animationEngine: 'best-available',
+    layoutModel: 'fitRows'
+});
+
+SLIDING MENU
+item = $(this);
+    $("#side-menu").find('.active').find('.sub-menu').slideUp("medium", function () {
+        $("#side-menu").find('.active').removeClass('open active');
+        item.addClass('open');
+        item.addClass('active');
+
+        item.find('.sub-menu').slideDown("medium", function () { });
+    });
+
+$('#name-filter button').click(function () {
+    var item = $(this);
+    $('#name-filter .active').removeClass('active');
+    item.addClass('active');
+
+    var filterValue = $(this).attr('data-filter');
+    $grid.isotope({ filter: filterValue });
+});
+*/
 
 var $grid = $('.course-container').isotope({
-        itemSelector: '.item',
-        animationEngine: 'best-available',
-        layoutModel: 'fitRows',
-    });
+    itemSelector: '.item',
+    animationEngine: 'best-available',
+    layoutModel: 'fitRows',
+});
 
 var filters = {};
 
 $('.course-filter').on('click', 'button', function () {
     var $this = $(this);
-        // get group key
+    // get group key
     var $buttonGroup = $this.parents('.course-filter');
     var filterGroup = $buttonGroup.attr('data-filter-group');
-        // set filter for group
+    // set filter for group
     filters[filterGroup] = $this.attr('data-filter');
-        // combine filters
+    // combine filters
     var filterValue = concatValues(filters);
-        // set filter for Isotope
+    // set filter for Isotope
     $grid.isotope({ filter: filterValue });
-    });
+});
 
-        // change is-checked class on buttons
+// change is-checked class on buttons
 $('.course-filter').each(function (i, buttonGroup) {
     var $buttonGroup = $(buttonGroup);
     $buttonGroup.on('click', 'button', function () {
         $buttonGroup.find('.active').removeClass('active');
         $(this).addClass('active');
     });
-    });
+});
 
-        // flatten object by concatting values
+// flatten object by concatting values
 function concatValues(obj) {
     var value = '';
     for (var prop in obj) {
         value += obj[prop];
     }
     return value;
-    }
+}
+
+/*
+$(".course-actions li").hover( function () {
+    $(".overlay").slideDown("medium", function () {
+        
+    });
+});
+
+$(".course-actions li").mouseout(function () {
+    $(".overlay").slideUp("medium", function () {
+
+    });
+});*/

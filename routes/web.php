@@ -10,53 +10,95 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-/*Route::group(['middleware' => ['web']], function() {*/
+//Route::group(['middleware' => ['web']], function() {
     Route::get('/', function () {
         return view('welcome');
     })->name('home');
 
-    Route::get('/user_courses', [
-        'uses'=> 'CourseController@getUserCourses',
-        'as' => 'user_courses',
-        'middleware' => 'auth2'
-    ]);
 
-    Route::get('/course_page/{course_id}', [
-        'uses'=> 'CourseController@getCoursePage',
-        'as' => 'course_page',
-        'middleware' => 'auth2'
-    ]);
+    Route::group(['middleware' => ['auth2']], function() {
 
-    Route::get('/course_page/{course_id}/lessons_overview', [
-        'uses'=> 'CourseController@getLessons',
-        'as' => 'lessons_overview',
-        'middleware' => 'auth2'
-    ]);
+        Route::get('/user_courses', [
+            'uses'=> 'CourseController@getUserCourses',
+            'as' => 'user_courses',
+        ]);
 
-    Route::get('/course_page/{course_id}/lesson/{lesson_id}/vocabulary_intro', [
-        'uses'=> 'LessonController@getLessonVocabulary',
-        'as' => 'vocabulary_intro',
-        'middleware' => 'auth2'
-    ]);
+        Route::get('/course_page/{course_id}', [
+            'uses'=> 'CourseController@getCoursePage',
+            'as' => 'course_page',
+        ]);
 
-    Route::get('/course_page/{course_id}/lesson/{lesson_id}/vocabulary_listen', [
-        'uses'=> 'CourseController@getVocabularyListen',
-        'as' => 'vocabulary_listen',
-        'middleware' => 'auth2'
-    ]);
+        Route::get('/course_page/{course_id}/lessons_overview', [
+            'uses'=> 'CourseController@getLessons',
+            'as' => 'lessons_overview',
+        ]);
 
-    Route::get('/course_page/{course_id}/lesson/{lesson_id}/vocabulary_translation', [
-        'uses'=> 'CourseController@getVocabularyTranslation',
-        'as' => 'vocabulary_translation',
-        'middleware' => 'auth2'
-    ]);
+        Route::post('/vocabulary_intro', [
+            'uses'=> 'LessonController@getLessonVocabularyIntro',
+            'as' => 'vocabulary_intro',
+        ]);
 
-    Route::get('/all_courses', [
-        'uses'=> 'CourseController@getAllCourses',
-        'as' => 'all_courses',
-        'middleware' => 'auth2'
-    ]);
+        Route::post('/course_page/word_repetitions', [
+            'uses'=> 'RepetitionController@getWordRepetitions',
+            'as' => 'word_repetition',
+        ]);
 
+        Route::post('/course_page/grammar_repetitions', [
+            'uses'=> 'RepetitionController@getGrammarRepetitions',
+            'as' => 'grammar_repetition',
+        ]);
+
+        Route::post('vocabulary_listen', [
+            'uses'=> 'LessonController@getLessonVocabularyListen',
+            'as' => 'vocabulary_listen',
+        ]);
+
+        Route::post('/grammar_task', [
+            'uses'=> 'LessonController@getLessonGrammarTasks',
+            'as' => 'grammar_task',
+        ]);
+
+        Route::post('/vocabulary_translation', [
+            'uses'=> 'LessonController@getLessonVocabularyTranslate',
+            'as' => 'vocabulary_translate',
+        ]);
+
+        Route::get('/all_courses', [
+            'uses'=> 'CourseController@getAllCourses',
+            'as' => 'all_courses',
+        ]);
+
+        Route::post('/fetchWordTranslation', [
+            'uses'=> 'WordController@postFetchWordTranslation',
+            'as' => 'fetchWordTranslation',
+        ]);
+
+
+        Route::post('/setRepetition/', [
+            'uses'=> 'RepetitionController@postSetRepetition',
+            'as' => 'setRepetition',
+        ]);
+
+        Route::post('/updateRepetition/', [
+            'uses'=> 'RepetitionController@postUpdateRepetition',
+            'as' => 'updateRepetition',
+        ]);
+
+        Route::post('/course_signup', [
+            'uses' =>'CourseController@postCourseSignUp',
+            'as' =>'course_signup',
+        ]);
+
+        Route::post('/course_signout', [
+            'uses' =>'CourseController@postCourseSignOut',
+            'as' =>'course_signout',
+        ]);
+
+        Route::get('/lesson_pdf/{file_name}', [
+            'uses' => 'LessonController@getLessonPDF',
+            'as'=>'lesson_pdf',
+        ]);
+    });
 
     Route::post('/signin', [
         'uses'=> 'UserController@postSignIn',
@@ -73,15 +115,7 @@
         'as' => 'logout'
     ]);
 
-    Route::post('/course_signup', [
-        'uses' =>'CourseController@postCourseSignUp',
-        'as' =>'course_signup',
-        'auth' => 'auth2',
-    ]);
-
-    Route::post('/course_signout', [
-        'uses' =>'CourseController@postCourseSignOut',
-        'as' =>'course_signout',
-        'auth' => 'auth2',
-    ]);
-//});
+    Route::group(['prefix' => 'api/v1'], function()
+    {
+        Route::resource('lessons','LessonController@getLessons');
+    });
