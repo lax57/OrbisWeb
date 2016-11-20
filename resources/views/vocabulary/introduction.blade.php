@@ -45,12 +45,15 @@
 
         function validateView(){
             var wordId = $("#word").data("wordid");
+            console.log(wordId);
             $.ajax({
                 method: 'POST',
                 url: fetchWordTranslation,
                 data: { wordId: wordId, _token: token }
             })
             .done(function (response) {
+                console.log(response);
+                console.log(response['translatedWords'][0]['word']);
                 $("#translation").text(response['translatedWords'][0]['word']);
                 $("#translation").fadeIn(500);
                 activateButtons(true, false, true, false);
@@ -70,7 +73,7 @@
             } else {
                 $("#next").hide();
                 $("#nextExcercise").show();
-               
+
                 activateButtons(false, false, false, false);
             }
         };

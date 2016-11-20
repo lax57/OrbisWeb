@@ -68,8 +68,31 @@ class LessonController extends Controller
         return response()->download($file, 'filename.pdf', $headers);
     }
 
+
+
     public function getLessons()
     {
-        return Lesson::all();
+        $lessons =  Lesson::all();
+
+        return response()->json([
+            'data' =>$lessons->toArray(),
+            ], 200);
+    }
+
+    public function showLesson($id)
+    {
+        $lesson =  Lesson::find($id);
+
+        if(!$lesson){
+            return response()->json([
+                'error' => [
+                    'message'=>'Lesson does not exists',
+                ]
+            ], 404);
+        }
+
+        return response()->json([
+            'data' => $lesson,
+        ], 200);
     }
 }

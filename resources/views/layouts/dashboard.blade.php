@@ -28,6 +28,7 @@
         var courseSignUpUrl = '{{route('course_signup')}}';
         var courseSignOutUrl = '{{route('course_signout')}}';
         var fetchWordTranslation = '{{route('fetchWordTranslation') }}';
+        var fetchWordTranslationBack = '{{route('fetchWordTranslationBack') }}';
         var setRepetitionUrl = '{{ route('setRepetition') }}';
         var updateRepetitionUrl = '{{ route('updateRepetition') }}';
 

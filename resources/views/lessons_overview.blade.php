@@ -5,19 +5,19 @@
     <div id="page-content" class="page-content" style="min-height:509px">
 
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">
-            
-                <ol class="carousel-indicators">
-                    @foreach($lessons as $key => $lesson)
-                    <li data-target="#carousel-example-generic" data-slide-to="{{$key}}" class="@if($key == 0) active @endif"></li>
-                    @endforeach
-                </ol>
-            
+
+            <ol class="carousel-indicators">
+                @foreach($lessons as $key => $lesson)
+                <li data-target="#carousel-example-generic" data-slide-to="{{$key}}" class="@if($key == 0) active @endif"></li>
+                @endforeach
+            </ol>
+
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 @foreach($lessons as $key => $lesson)
-                <div class="item @if($key == 0) active @endif" data-lessonno="{{$key+1}}" data-lessonid="{{$lesson->id}}">
+                <div class="item @if($key == 0) active @endif" data-lessonno="{{$key+1}}" data-lessonid="{{    $lesson->id}}">
                     <div class="lesson-title-page">
-                        <h1>Lekcja {{$key+1}}</h1>
+                        <h1>{{trans('lessons_overview.lesson') }} {{$key+1}}</h1>
                     </div>
                     <div class="description-container">
                         <div class="description-box" style="height:100%">
@@ -25,7 +25,7 @@
                                 {{$lesson->title}}
                             </div>
                             <div class="content">
-                                <p>{{    $lesson->description}}</p>
+                                <p>{{$lesson->description}}</p>
                             </div>
                             <div class="actions">
                                 <ul class="list-inline">
@@ -71,9 +71,9 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">{{trans('modal.title') }}</h4>
+                    <h4 class="modal-title">{{trans('modal.title_new') }}</h4>
                 </div>
-                <form action="{{route('vocabulary_intro')}} " method="post">
+                <form action="{{route('vocabulary_intro')}}" method="post">
                     <div class="modal-body">
 
                         <p id="selectWordRepCount">
@@ -87,7 +87,7 @@
                             <input type="hidden" value="{{Session::token()}}" name="_token" />
                             <input type="hidden" value="{{$lessons[0]->course_id}}" name="courseId" />
                             <input type="hidden" value="aa" name="lessonId" id="lessonId" />
-                            <span>z <span id="numberOfWordReps"></span> mozliwych jednostek</span>
+                            <span>{{trans('lessons_overview.from') }} <span id="numberOfWordReps"></span> {{trans('lessons_overview.possible_units') }}</span>
                         </p>
                         <p id="noWordReps">
                             <span>{{trans('lessons_overview.lesson_complete') }}</span>
@@ -113,7 +113,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">{{trans('modal.title') }}</h4>
+                    <h4 class="modal-title">{{trans('modal.title_new') }}</h4>
                 </div>
                 <form action="{{route('grammar_task')}} " method="post">
                     <div class="modal-body">
@@ -129,7 +129,7 @@
                             <input type="hidden" value="{{Session::token()}}" name="_token" />
                             <input type="hidden" value="{{$lessons[0]->course_id}}" name="courseId" />
                             <input type="hidden" value="" name="lessonId" id="lessonId" />
-                            <span>z <span id="numberOfTaskReps"></span> mozliwych jednostek</span>
+                            <span>{{trans('lessons_overview.from') }} <span id="numberOfTaskReps"></span> {{trans('lessons_overview.possible_units') }}</span>
                         </p>
                         <p id="noTaskReps">
                             <span>{{trans('lessons_overview.lesson_complete') }}</span>

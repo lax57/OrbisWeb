@@ -13,8 +13,31 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+Route::get('/authenticate',[
+    'uses' => 'UserController@authenticate'
+]);
+
+
+
+Route::group(['middleware' => ['auth:api']], function()
+    {
+        Route::get('/user',[
+            'uses' => 'Api\ApiUserController@getUser'
+        ]);
+
+        Route::get('/user/{course_id}/repetitions',[
+            'uses' => 'Api\ApiRepetitionController@getAuthUserRepetitions'
+        ]);
+
+        Route::get('/user/courses',[
+            'uses' => 'Api\ApiCourseController@getAuthUserCourses'
+        ]);
+
+        Route::post('/updateRepetition', [
+            'uses'=> 'RepetitionController@postUpdateRepetition',
+        ]);
+    });
+
+
 
 

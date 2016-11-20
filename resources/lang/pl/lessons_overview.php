@@ -5,4 +5,7 @@ return [
     'grammar'=> 'Gramatyka',
     'vocabulary'=> 'Słownictwo',
     'PDF' => "PDF",
+    'lesson' =>"Lekcja",
+    'from' => 'z',
+    'possible_units' => 'możliwych jednostek',
 ];

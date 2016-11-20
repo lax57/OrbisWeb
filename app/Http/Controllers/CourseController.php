@@ -38,7 +38,10 @@ class CourseController extends Controller
         }
 
         $repetition_count = $course->repetitions->count();
-        return $wordscount!==0? number_format(($repetition_count/($wordscount+$taskcount))*100 ,2 ): 0;
+        $wordscount!==0? $course_progress = number_format(($repetition_count/($wordscount+$taskcount))*100 ,2 ): $course_progress = 0;
+
+        return array('course_progress' => $course_progress, 'words_count'=>$wordscount, 'tasks_count'=>$taskcount);
+
     }
 
     private function getTaskReptitionCount($course){
@@ -86,10 +89,13 @@ class CourseController extends Controller
         $course = Auth::User()->courses()->where('course_id', $course_id)->first();
 
         if($course){
-            $course_progress = $this -> calculateCourseProgress($course);
+            $course_stats = $this ->calculateCourseProgress($course);
+            $course_progress =$course_stats['course_progress'];
+            $words_count = $course_stats['words_count'];
+            $tasks_count = $course_stats['tasks_count'];
             $task_rep_count = $this ->getTaskReptitionCount($course);
             $word_rep_count = $this ->getWordReptitionCount($course);
-            return view('course_page', ['course'=>$course, 'progress' =>$course_progress, 'task_rep_count' => $task_rep_count,'word_rep_count' => $word_rep_count]);
+            return view('course_page', ['course'=>$course, 'progress' =>$course_progress, 'task_rep_count' => $task_rep_count,'word_rep_count' => $word_rep_count, 'words_count' => $words_count, 'tasks_count'=>$tasks_count]);
         } else {
             return redirect()->back();
         }

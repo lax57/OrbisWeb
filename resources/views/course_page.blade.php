@@ -43,7 +43,10 @@
                         {{trans('course_page.description') }}
                     </div>
                     <div class="content">
-                        {{trans('course_page.lorem_ipsum') }}
+                        <p>{{$course->description}}</p>
+                        <p><b>{{trans('course_page.lessons') }}: </b>{{$course->lessons->count()}}</p>
+                        <p><b>{{trans('course_page.excercises') }}: </b>{{$tasks_count}}</p>
+                        <p><b>{{trans('course_page.words') }}: </b>{{$words_count}}</p>
                     </div>
                 </div>
 
@@ -110,7 +113,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">{{trans('modal.title') }}</h4>
+                    <h4 class="modal-title">{{trans('modal.title_repetition') }}</h4>
                 </div>
                 <div class="modal-body">
 
@@ -126,9 +129,9 @@
                             </select>
                             <input type="hidden" value="{{Session::token()}}" name="_token" />
                             <input type="hidden" value="{{$course->id}}" name="course_id" />
-                            <span>z {{$task_rep_count}} mozliwych jednostek</span>
+                            <span>{{trans('lessons_overview.from') }} {{$task_rep_count}} {{trans('lessons_overview.possible_units') }}</span>
                             @else
-                            <span>Gratulacje nie masz dzisiaj zadnych powtorek!</span>
+                            <span>{{trans('course_page.no_repetitions') }}</span>
                             @endif
                     </p>
                     <div class="modal-footer">
@@ -153,7 +156,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">{{trans('modal.title') }}</h4>
+                    <h4 class="modal-title">{{trans('modal.title_repetition') }}</h4>
                 </div>
                 <div class="modal-body">
 
@@ -169,9 +172,9 @@
                         </select>
                         <input type="hidden" value="{{Session::token()}}" name="_token" />
                         <input type="hidden" value="{{$course->id}}" name="course_id" />
-                        <span>z {{$word_rep_count}} mozliwych jednostek</span>
+                        <span>{{trans('lessons_overview.from') }} {{$word_rep_count}} {{trans('lessons_overview.possible_units') }}</span>
                         @else
-                        <span>Gratulacje nie masz dzisiaj zadnych powtorek!</span>
+                        <span>{{trans('course_page.no_repetitions') }}</span>
                         @endif
                     </p>
                     <div class="modal-footer">

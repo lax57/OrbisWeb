@@ -9,15 +9,6 @@
         </div>
         @include('includes.coursegrid')
 
-
-
-
-
-
-
-
-
-
     </div>
 </div>
 @endsection

@@ -1,29 +1,20 @@
 
 <div class="page-sidebar-wrapper">
-    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
-    <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
     <div class="page-sidebar navbar-collapse collapse">
-        <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
-        <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
-        <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
-        <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
-        <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
-        <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
         <ul id="side-menu" class="page-sidebar-menu  page-header-fixed" data-keep-expanded="false" data-auto-scroll="false" data-slide-speed="200">
-            <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
             <?php $user_courses = Auth::User()->courses; ?>
             <li class="sidebar-toggler-wrapper hide">
                 <div class="sidebar-toggler">
                     <span></span>
                 </div>
             </li>
-            <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+            
             <li class="nav-item logo-dashboard">
                 <a href="{{route('user_courses')}}">Dashboard</a>
             </li>
             <li id="your-courses" class="nav-item nav-button-dropdown {{ Request::is('user_courses','course_page/*') ? 'active open' : '' }}">
                 <a class="nav-link nav-toggle">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-user"></i>
                     <span class="title">{{trans('navbar.your_courses') }}</span>
                     <span class="arrow {{ Request::is('user_courses') ? 'open' : '' }}"></span>
                 </a>
@@ -45,7 +36,7 @@
 
             <li id="all-courses" class="nav-item nav-button-dropdown {{ Request::is('all_courses') ? 'active open' : '' }}">
                 <a class="nav-link submit-filter-link">
-                    <i class="fa fa-clock-o"></i>
+                    <i class="fa fa-clone"></i>
                     <span class="title">{{trans('navbar.browse') }}</span>
                     <span class="arrow {{ Request::is('all_courses') ? 'open' : '' }}"></span>
                 </a>

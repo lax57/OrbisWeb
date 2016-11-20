@@ -1,6 +1,7 @@
 <?php
 return [
-    'title' => 'Wybierz ilość jednostek do powtórki',
+    'title_repetition' => 'Wybierz liczbę jednostek do powtórki',
+    'title_new' => 'Wybierz liczbę jednostek',
     'close' => 'Zamknij',
     'go' => 'Przejdź',
 ];

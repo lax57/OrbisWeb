@@ -4,6 +4,8 @@ use App\User;
 use App\Repetition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+
 class RepetitionController extends Controller
 {
     public function postSetRepetition(Request $request)

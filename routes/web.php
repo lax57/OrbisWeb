@@ -15,6 +15,37 @@
         return view('welcome');
     })->name('home');
 
+    Route::get('/register', function () {
+        return view('register');
+    })->name('register');
+
+    Route::get('/addwords', function () {
+        return view('backoffice.addwords');
+    })->name('addwords');
+
+    //Routes for backoffice!!!!
+
+    Route::get('/addwords', function () {
+        return view('backoffice.addwords');
+    })->name('addwords');
+
+    Route::post('/addwordtodatabase', [
+        'uses'=> 'WordController@postAddWord',
+        'as' => 'addword'
+    ]);
+
+    Route::get('/addtasks', function () {
+        return view('backoffice.addtasks');
+    })->name('addwords');
+
+    Route::post('/addtasktodatabase', [
+        'uses'=> 'WordController@postAddTask',
+        'as' => 'addtask'
+    ]);
+
+    //Routes for backoffice!!!!
+
+
 
     Route::group(['middleware' => ['auth2']], function() {
 
@@ -73,6 +104,10 @@
             'as' => 'fetchWordTranslation',
         ]);
 
+        Route::post('/fetchWordTranslationBack', [
+            'uses'=> 'WordController@postFetchWordTranslationBack',
+            'as' => 'fetchWordTranslationBack',
+        ]);
 
         Route::post('/setRepetition/', [
             'uses'=> 'RepetitionController@postSetRepetition',
@@ -115,7 +150,24 @@
         'as' => 'logout'
     ]);
 
-    Route::group(['prefix' => 'api/v1'], function()
+    Route::group(['prefix' => 'api/','middleware' => ['auth']], function()
     {
-        Route::resource('lessons','LessonController@getLessons');
+        Route::get('/user/{user_id}/courses',[
+
+            'uses' => 'Api\ApiCourseController@getUserCourses'
+
+            ]);
+
+        Route::get('/user/repetitions',[
+
+            'uses' => 'Api\ApiRepetitionController@getAuthUserRepetitions'
+
+            ]);
+
+        Route::post('/user/{user_id}/courses/{course_id}/save_rep',[
+
+            'uses' => 'Api\ApiRepetitionController@updateRepetition'
+
+        ]);
     });
+    

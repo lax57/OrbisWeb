@@ -47,12 +47,13 @@
             var expectedWord = words.filter(function( word ) {
                 return word.id == wordId;
             })[0];
+                    console.log(expectedWord);
             if(userInput === expectedWord['word']){
                 $('.content .form-control').addClass('success');
                 words = words.filter(function (el) {
                     return el.id !== wordId;
                 });
-                if(words.length<1) {                
+                if(words.length<1) {
                     $("#next").hide();
                     $("#nextExcercise").show();
                  }

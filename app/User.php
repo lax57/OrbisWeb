@@ -13,4 +13,9 @@ class User extends Model implements Authenticatable
     {
         return $this->belongsToMany('App\Course')->withPivot('course_progress');
     }
+
+    public function repetitions()
+    {
+        return $this->hasMany('App\Repetition');
+    }
 }
